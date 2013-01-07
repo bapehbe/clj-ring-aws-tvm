@@ -48,7 +48,7 @@
       (is (get creds-map "access-key-id"))
       (is (get creds-map "secret-access-key"))
       (is (get creds-map "session-token"))
-      (is (> (- expiration now) 1200000) "number of milliseconds between a moment taken before the request and expiration should be a bit bigger than 1200000 (20 minutes is the duration specified for Alice's request)"))))
+      (is (< (Math/abs (- expiration now 1200000)) 60000) "number of milliseconds between a moment taken before the request and expiration should be a around 1200000 give or take a minute (1200000 ms. is the duration specified for Alice's request)"))))
 
 (deftest test-fail
   (with-handler handler
