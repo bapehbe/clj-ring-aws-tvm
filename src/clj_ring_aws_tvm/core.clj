@@ -24,12 +24,11 @@
      :expiration (-> creds .getExpiration .getTime)}))
 
 (defn make-handler
-  "Creates a Ring handler creds an instance of AWSCredentials, you can
-  use the make-creds function to create an instance of
-  BasicAWSCredentials.
-  policy-fn a function which takes a user and returns an AWS policy string
-  duration-fn a function which takes a user and returns duration in milliseconds
-  user-extractor-fn a function which takes a Ring request map and returns a user"
+  "Creates a Ring handler.
+  creds an instance of AWSCredentials, you can use the make-creds function to create an instance of BasicAWSCredentials.
+  policy-fn a function which takes a user and returns an AWS policy string.
+  duration-fn a function which takes a user and returns duration in milliseconds.
+  user-extractor-fn a function which takes a Ring request map and returns a user."
   [creds policy-fn duration-fn user-extractor-fn]
   (let [sts (make-sts creds)]
     (fn [request]
